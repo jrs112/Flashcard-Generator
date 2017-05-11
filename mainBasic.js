@@ -9,7 +9,6 @@ function startGame() {
     var cardArray = [];
     var initialScore = 0;
     var initialIndex = 0;
-
     for (var i = 0; i < cardInfo.length; i++) {
         currentCard = new BasicCard(cardInfo[i].front, cardInfo[i].back);
         cardArray.push(currentCard);
@@ -27,16 +26,11 @@ function endGame(score) {
     name: "text",
     message: "Do you want to play again?"
   }]).then(function(answer) {
-    // This lets the user just type in "y" to continue.
-    // Will also work for "yes" or "yeah" or any answer begining with "y"
     if (answer.text.charAt(0).toLowerCase() === "y") {
-      // Restarts the game from scratch if desired
       startGame();
     }
     else {
-      // Otherwise the game ends here since we aren't calling any other functions
-      console.log("Thanks for playing!");
-      console.log("Goodbye!");
+      console.log("Thank you for playing!");
     }
   });
 }
@@ -45,7 +39,6 @@ function startRound(currentScore, cardArray, currentIndex) {
   if (currentIndex < cardArray.length) {
     askUser(cardArray, currentIndex, currentScore);
   }
-  // Otherwise end the game
   else {
     endGame(currentScore);
   }
